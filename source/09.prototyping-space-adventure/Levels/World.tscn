@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://do4pte4ibydbj"]
+[gd_scene load_steps=13 format=3 uid="uid://xjin6o4f8q0w"]
 
 [ext_resource type="Script" path="res://09.prototyping-space-adventure/Levels/World.gd" id="1_4v41m"]
 [ext_resource type="PackedScene" uid="uid://ctg86xypep676" path="res://09.prototyping-space-adventure/Recipes/Spawner/Spawner2D.tscn" id="2_not0y"]
@@ -93,14 +93,6 @@ preprocess = 4.0
 
 [node name="Authentication" parent="." instance=ExtResource("8_dmrke")]
 
-[node name="AsteroidsMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://09.prototyping-space-adventure/Objects/Asteroid/Asteroid.tscn")
-spawn_path = NodePath("../Asteroids")
-
-[node name="PlayersMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://09.prototyping-space-adventure/Actors/Player/Player2D.tscn")
-spawn_path = NodePath("../Players")
-
 [node name="Label" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
@@ -110,5 +102,3 @@ text = "I'm server"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_88vyb")
-
-[connection signal="spawned" from="PlayersMultiplayerSpawner" to="." method="_on_players_multiplayer_spawner_spawned"]

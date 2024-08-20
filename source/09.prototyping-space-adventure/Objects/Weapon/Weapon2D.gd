@@ -9,7 +9,6 @@ extends Marker2D
 @onready var animation_player = $AnimationPlayer
 
 
-@rpc("call_local")
 func fire():
 	if timer.is_stopped():
 		animation_player.play("fire")

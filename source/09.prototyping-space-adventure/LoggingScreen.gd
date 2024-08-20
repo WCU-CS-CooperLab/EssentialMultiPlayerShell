@@ -79,9 +79,6 @@ func authentication_succeed(session_token):
 
 
 func _on_StartButton_pressed():
-	rpc_id(1, "start_game")
+	pass
 
 
-@rpc("authority", "call_local")
-func start_game():
-	get_tree().change_scene_to_file(next_scene)
