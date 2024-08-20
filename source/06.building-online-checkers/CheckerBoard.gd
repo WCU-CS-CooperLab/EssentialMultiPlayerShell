@@ -19,22 +19,14 @@ var selected_piece = null
 
 
 func _ready():
-	if multiplayer.get_peers().size() > 0:
-		if is_multiplayer_authority():
-			rpc("setup_team", Teams.BLACK, multiplayer.get_peers()[0])
-			rpc("setup_team", Teams.WHITE, multiplayer.get_peers()[1])
 	create_meta_board()
 	map_pieces(black_team)
 	map_pieces(white_team)
 	rpc("toggle_turn")
 
 
-@rpc("authority", "call_local")
-func setup_team(team, peer):
-	if team == Teams.BLACK:
-		black_team.set_multiplayer_authority(peer)
-	else:
-		white_team.set_multiplayer_authority(peer)
+func setup_team(team, peer_id):
+	pass
 
 
 func create_meta_board():
@@ -49,30 +41,23 @@ func map_pieces(team):
 		piece.selected.connect(_on_piece_selected.bind(piece))
 
 
-@rpc("any_peer", "call_local")
 func toggle_turn():
 	clear_free_cells()
+	disable_pieces(white_team)
+	disable_pieces(black_team)
 	var winner = get_winner()
 	if winner:
 		player_won.emit(winner)
 		return
 	if current_turn == Teams.BLACK:
 		current_turn = Teams.WHITE
-		if not multiplayer.get_peers().size() > 0:
-			enable_pieces(white_team)
-		elif white_team.get_multiplayer_authority() == multiplayer.get_unique_id():
-			enable_pieces(white_team)
+		enable_pieces(white_team)
 	else:
 		current_turn = Teams.BLACK
-		if not multiplayer.get_peers().size() > 0:
-			enable_pieces(black_team)
-		elif black_team.get_multiplayer_authority() == multiplayer.get_unique_id():
-			enable_pieces(black_team)
+		enable_pieces(black_team)
 
 
 func get_winner():
-	disable_pieces(white_team)
-	disable_pieces(black_team)
 	var winner = null
 	if black_team.get_children().size() < 1:
 		winner = "White"
@@ -107,18 +92,16 @@ func disable_pieces(team):
 func move_selected_piece(target_cell):
 	var current_cell = local_to_map(selected_piece.position)
 	selected_piece.position = map_to_local(target_cell)
-	rpc("update_cells", current_cell, target_cell)
+	update_cells(current_cell, target_cell)
 	if not is_free_cell(target_cell):
-		rpc("crown", target_cell)
+		crown(target_cell)
 
 
-@rpc("any_peer", "call_local")
 func update_cells(previous_cell, target_cell):
 	meta_board[target_cell] = meta_board[previous_cell]
 	meta_board[previous_cell] = null
 
 
-@rpc("any_peer", "call_local")
 func remove_piece(piece_cell):
 	if not is_on_board(piece_cell):
 		return
@@ -130,7 +113,6 @@ func remove_piece(piece_cell):
 	meta_board[piece_cell] = null
 
 
-@rpc("any_peer", "call_local")
 func crown(cell):
 	var piece = meta_board[cell]
 	if piece.team == Teams.BLACK and cell.y < 1:
@@ -148,7 +130,7 @@ func capture_pieces(target_cell):
 	if not is_on_board(cell):
 		return
 	if not is_free_cell(cell):
-		rpc("remove_piece", cell)
+		remove_piece(cell)
 		move_selected_piece(target_cell)
 		if can_capture(selected_piece):
 			target_cell = target_cell + (direction * 2)
