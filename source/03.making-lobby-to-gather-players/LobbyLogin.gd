@@ -51,11 +51,7 @@ func _on_LoginButton_pressed():
 
 
 func send_credentials():
-	var user = user_line_edit.text
-	var password = password_line_edit.text
-
-	rpc_id(get_multiplayer_authority(), "authenticate_player", user, password)
-
+	pass
 
 @rpc
 func add_avatar(avatar_name, texture_path):
