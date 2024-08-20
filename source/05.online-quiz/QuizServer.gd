@@ -41,11 +41,9 @@ func authenticate_player(user, password):
 			rpc("add_logged_player", database[logged_user]['name'])
 
 
-@rpc("any_peer", "call_remote")
+@rpc
 func start_game():
-	rpc("start_game")
-	get_tree().change_scene_to_file(quiz_screen_scene_path)
-
+	pass
 
 @rpc
 func authentication_failed(error_message):

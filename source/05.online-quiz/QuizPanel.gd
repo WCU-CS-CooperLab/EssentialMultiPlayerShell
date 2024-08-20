@@ -22,41 +22,26 @@ func _ready():
 
 
 func lock_answers():
-	for answer in answer_container.get_children():
-		answer.disabled = true
+	pass
 
 
 func unlock_answers():
-	for answer in answer_container.get_children():
-		answer.disabled = false
+	pass
 
 
-@rpc("call_local")
+@rpc
 func update_winner(winner_name):
-	question_label.text = "%s won the round!!" % winner_name
-	lock_answers()
+	pass
 
 
-@rpc("call_local")
+@rpc
 func player_missed(loser_name):
-	question_label.text = "%s missed the question!!" % loser_name
-	lock_answers()
+	pass
 
 
-@rpc("any_peer", "call_local")
+@rpc
 func update_question(new_question_index):
-	var question = available_questions.pop_at(new_question_index)
-	if not question == null:
-		question_label.text = questions[question]['text']
-		correct_answer = questions[question]['correct_answer_index']
-		for i in range(0, 4):
-			var alternative = questions[question]['alternatives'][i]
-			answer_container.get_child(i).text = alternative
-		unlock_answers()
-	else:
-		for answer in answer_container.get_children():
-			question_label.text = "No more questions"
-		lock_answers()
+	pass
 
 
 func connect_answer_buttons():
@@ -65,8 +50,7 @@ func connect_answer_buttons():
 
 
 func evaluate_answer(answer_index):
-	var is_answer_correct = answer_index == correct_answer
-	answered.emit(is_answer_correct)
+	pass
 
 
 func _on_answer_button_pressed(button_index):

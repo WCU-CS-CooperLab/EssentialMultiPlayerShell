@@ -80,19 +80,18 @@ func authentication_succeed(session_token):
 
 
 func _on_StartButton_pressed():
-	rpc_id(get_multiplayer_authority(), "start_game")
+	pass
 
 
 @rpc
 func add_logged_player(player_name):
-	logged_players_label.text = logged_players_label.text + "\n%s" % player_name
-
+	pass
 
 @rpc
 func clear_logged_players():
 	logged_players_label.text = "Players in match: \n \n"
 
 
-@rpc("authority", "call_local")
+@rpc
 func start_game():
-	get_tree().change_scene_to_file(quiz_screen_scene)
+	pass

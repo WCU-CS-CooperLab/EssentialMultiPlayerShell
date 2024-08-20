@@ -16,18 +16,13 @@ func _ready():
 	generate_new_question()
 
 
-@rpc("any_peer")
+@rpc
 func answered(user):
-	quiz_panel.rpc("update_winner", database[user]["name"])
-	timer.start(turn_delay_in_seconds)
-	wait_label.rpc("wait", turn_delay_in_seconds)
+	pass
 
-
-@rpc("any_peer")
+@rpc
 func missed(user):
-	quiz_panel.rpc("player_missed", database[user]["name"])
-	timer.start(turn_delay_in_seconds)
-	wait_label.rpc("wait", turn_delay_in_seconds)
+	pass
 
 
 func _on_timer_timeout():
