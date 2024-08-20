@@ -8,12 +8,6 @@ extends Node2D
 @onready var body = $CharacterBody2D
 
 
-@rpc("call_local")
-func setup_multiplayer(player_id):
-	set_multiplayer_authority(player_id)
-	if not is_multiplayer_authority():
-		set_physics_process(false)
-		set_process_unhandled_input(false)
 
 
 func _physics_process(delta):

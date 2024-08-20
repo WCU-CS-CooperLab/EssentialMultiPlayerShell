@@ -11,16 +11,8 @@ extends Node
 @onready var winner_display = $Interface/WinnerDisplay
 @onready var winner_label = $Interface/WinnerDisplay/Label
 
-
 func _ready():
 	randomize()
-	await(get_tree().create_timer(0.1).timeout)
-	if multiplayer.get_peers().size() > 0:
-		if is_multiplayer_authority():
-			var player_1 = multiplayer.get_peers()[0]
-			var player_2 = multiplayer.get_peers()[1]
-			player_1_paddle.rpc("setup_multiplayer", player_1)
-			player_2_paddle.rpc("setup_multiplayer", player_2)
 	ball.move()
 
 

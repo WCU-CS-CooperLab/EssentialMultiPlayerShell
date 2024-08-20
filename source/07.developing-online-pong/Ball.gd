@@ -7,9 +7,7 @@ extends Node2D
 
 
 func _ready():
-	if not is_multiplayer_authority():
-		set_physics_process(false)
-
+	pass
 
 func move():
 	body.velocity.x = [-speed, speed][randi()%2]
