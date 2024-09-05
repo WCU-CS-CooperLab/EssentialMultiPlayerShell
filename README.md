@@ -3,7 +3,7 @@ The Essential Guide to Creating Multiplayer Games with Godot 4.0
 <a href="https://www.packtpub.com/product/the-essential-guide-to-creating-multiplayer-games-with-godot-4.0/9781803232614"><img src="https://static.packt-cdn.com/products/9781803232614/cover/smaller" alt="Building Your Own JavaScript Framework" height="256px" align="right"></a>
 This is a modified code repository for [The Essential Guide to Creating Multiplayer Games with Godot 4.0](https://www.packtpub.com/product/the-essential-guide-to-creating-multiplayer-games-with-godot-4.0/9781803232614), published by Packt.
 
-This source in this repository has the code in the state that the book expects if you were to actually do the steps described in the book.
+**Note:** This source in this repository has the code in the state that the book expects if you were to actually do the steps described in the book. Please look at the [errata](errata.md) file for changes that you'll need to do that aren't described in the book or if there is text in the book that isn't quite right.
 
 ## What is this book about?
 If you’re involved in game development with Godot and want to add multiplayer capabilities to enrich the shared gaming experience, then this book is for you. You’ll also find this book useful if you’re a network engineer looking to gain hands-on experience with practical projects. To get the most out of this book, a prior understanding of the Godot Engine design philosophy, the GDScript programming language, the SceneTree structure, and how nodes work is essential.	
