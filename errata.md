@@ -38,7 +38,7 @@ func start_game():
 
 However, the scene change makes the rpc call fail.
 
-Instead it should be:
+Instead, the order should be swapped, it should be:
 
 ```gdscript
 @rpc("any_peer", "call_remote")
