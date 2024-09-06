@@ -18,7 +18,42 @@ display a success message to the player: `error_label.text = "Success: Logged In
 
 all code that reads `fake_database` should just be `database`
 
+
 ## calls to .wait()
 
 When the book says to use the while loops with `packet.wait()`, `if` should be used instead, then the `break` statements become unnecessary.
 
+# Chapter 5
+
+## Starting the match
+
+The QuizServer.md's `start_game()` func is listed as:
+
+```gdscript
+@rpc("any_peer", "call_remote")
+func start_game():
+    get_tree().change_scene_to_file(quiz_screen_scene_path)
+    rpc("start_game")
+```
+
+However, the scene change makes the rpc call fail.
+
+Instead it should be:
+
+```gdscript
+@rpc("any_peer", "call_remote")
+func start_game():
+    rpc("start_game")
+    get_tree().change_scene_to_file(quiz_screen_scene_path)
+```
+
+## A question is lost
+
+In QuizScreenServer.gd, the _ready() function has 3 lines, however the second 2 lines are not needed because of the `_on_timer_timout` callback for the timeout() signal of the timer.
+
+That is needed is:
+
+```gdscript
+func _ready():
+    timer.start(3.0)
+```
