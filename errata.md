@@ -51,7 +51,7 @@ func start_game():
 
 In QuizScreenServer.gd, the _ready() function has 3 lines, however the second 2 lines are not needed because of the `_on_timer_timout` callback for the timeout() signal of the timer.
 
-That is needed is:
+All that is needed is:
 
 ```gdscript
 func _ready():
